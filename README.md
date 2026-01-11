@@ -25,28 +25,26 @@ Il sistema opera su tre livelli temporali:
 
 ## 🏗️ Architettura del Sistema
 
-L'architettura gestisce flussi di dati paralleli per l'assistenza all'operatore e il controllo qualità.
+L'architettura gestisce flussi di dati paralleli per l'assistenza all'operatore e il controllo qualità post-chiamata.
 
 ```mermaid
 graph TD
-    subgraph "Live Call Phase"
-    A[Audio Input (VoIP)] -->|Stream WebSocket| B(Speech-to-Text Engine)
-    B -->|Text Stream| C{Core Orchestrator}
-    C -->|Semantic Search| D[RAG Engine / Vector DB]
-    D -->|Context| E[LLM Agent - Helper]
-    C -->|Compliance Check| F[Script Validator Engine]
-    E --> G[Operator Dashboard (Suggestions)]
-    F --> G[Operator Dashboard (Alerts/Script)]
+    subgraph Live_Phase ["🔴 Live Call Phase"]
+        A[Audio Input (VoIP)] -->|Stream WebSocket| B(Speech-to-Text Engine)
+        B -->|Text Stream| C{Core Orchestrator}
+        C -->|Semantic Search| D[RAG Engine / Vector DB]
+        D -->|Context| E[LLM Agent - Helper]
+        C -->|Compliance Check| F[Script Validator Engine]
+        E --> G[Operator Dashboard]
+        F --> G
     end
 
-    subgraph "Post Call Phase"
-    H[End Call] --> I[Data Aggregator]
-    I --> L[LLM Agent - Supervisor]
-    L --> M[Supervisor Dashboard]
-    L --> N[CRM Auto-Fill]
+    subgraph Post_Phase ["🟢 Post Call Phase"]
+        H[End Call] --> I[Data Aggregator]
+        I --> L[LLM Agent - Supervisor]
+        L --> M[Supervisor Dashboard]
+        L --> N[CRM Auto-Fill]
     end
-
-
 Stack Tecnologico
 
 Core: Python, AsyncIO
