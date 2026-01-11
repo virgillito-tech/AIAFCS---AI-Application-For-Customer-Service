@@ -1,90 +1,116 @@
-# AIAFCS - AI Application For Customer Service
+# AI Call Intelligence Platform
 
-![Status](https://img.shields.io/badge/Status-Proprietary%20%2F%20Commercial-blue)
-![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
-![AI](https://img.shields.io/badge/GenAI-LLM%20%26%20RAG-orange)
-![Module](https://img.shields.io/badge/Module-Supervisor%20Analytics-red)
-
-> **Nota:** Questo repository funge da **vetrina tecnica** per il progetto *AIAFCS*. Poiché il software è attualmente in fase di commercializzazione/licensing, il codice sorgente completo è privato. Questo documento illustra l'architettura, le sfide tecniche risolte e le funzionalità del sistema.
+> **Enterprise-grade AI platform for call centers**  
+> On-premise • Privacy-first • Real-time assistance
 
 ---
 
-## 🚀 Panoramica del Progetto
+## Overview
 
-**AIAFCS** è una piattaforma *full-stack* di assistenza intelligente progettata per ottimizzare l'intero ciclo di vita dell'interazione Customer Service. Il sistema non si limita a supportare l'operatore, ma garantisce la qualità del servizio attraverso il monitoraggio della compliance e offre strumenti di analisi avanzata per i supervisori.
+This project is an **AI-powered platform for call centers**, designed to analyze, monitor and assist customer service calls while keeping **all sensitive data inside the company infrastructure**.
 
-Il sistema opera su tre livelli temporali:
-1.  **Real-Time Assistance:** Suggerimenti tecnici e risposte basate su manuali.
-2.  **Real-Time Script Compliance:** Verifica istantanea del rispetto delle procedure di conversazione.
-3.  **Post-Call Supervision:** Analisi automatica, valutazione e reportistica per i manager.
+The solution combines **speech-to-text, speaker diarization, large language models and semantic document search** to deliver both **post-call analytics** and **real-time operator assistance**.
 
-### 🎥 Demo / Screenshot
-
+> ⚠️ **Source code is not publicly available**  
+> This repository intentionally contains **documentation only**.  
+> The software is distributed commercially under license.
 
 ---
 
-## 🏗️ Architettura del Sistema
+## Key Features
 
-L'architettura gestisce flussi di dati paralleli per l'assistenza all'operatore e il controllo qualità post-chiamata.
+### Post-call Analysis
+- Automatic call transcription
+- Speaker diarization (operator / customer)
+- Call summary generation
+- Keyword extraction
+- Automatic CRM field population (call reason)
+- Customer sentiment analysis:
+  - Positive / Neutral / Negative
+  - Urgency detection for negative calls
+- Compliance monitoring:
+  - Detection of mandatory scripts not read
+  - Precise indication of missing sections
 
-```mermaid
-graph TD
-    subgraph Live_Phase ["🔴 Live Call Phase"]
-        A[Audio Input (VoIP)] -->|Stream WebSocket| B(Speech-to-Text Engine)
-        B -->|Text Stream| C{Core Orchestrator}
-        C -->|Semantic Search| D[RAG Engine / Vector DB]
-        D -->|Context| E[LLM Agent - Helper]
-        C -->|Compliance Check| F[Script Validator Engine]
-        E --> G[Operator Dashboard]
-        F --> G
-    end
+---
 
-    subgraph Post_Phase ["🟢 Post Call Phase"]
-        H[End Call] --> I[Data Aggregator]
-        I --> L[LLM Agent - Supervisor]
-        L --> M[Supervisor Dashboard]
-        L --> N[CRM Auto-Fill]
-    end
-Stack Tecnologico
+### Real-time Operator Assistance
+- Live audio analysis during the call
+- Context-aware suggestions for issue resolution
+- Answers retrieved exclusively from **company documentation**
+- Every suggestion includes:
+  - Document name
+  - Page
+  - Paragraph reference
 
-Core: Python, AsyncIO
+This allows operators to respond faster, more accurately and in full compliance with internal procedures.
 
-AI Framework: LangChain, LlamaIndex
+---
 
-LLM & Embeddings: OpenAI GPT-4o / Meta Llama 3 (Local Deployment)
+## Architecture
 
-Vector Database: ChromaDB / Pinecone
+- **Fully on-premise deployment**
+- Uses **customer-owned hardware and GPUs**
+- Containerized architecture (Docker / Kubernetes)
+- Local REST / WebSocket APIs
+- No audio, transcripts or personal data are sent outside the company network
 
-Frontend: [Inserire framework, es. Streamlit / React / Vue]
+The platform is compatible with existing **CRM and CTI systems** through API integration.
 
-Backend: FastAPI / WebSockets
+---
 
+## Privacy & Security
 
-⚡ Funzionalità Chiave
-1. Trascrizione & RAG in Tempo Reale
+- No external cloud dependency for data processing
+- End-to-end encrypted communication
+- Metadata-only usage tracking
+- Optional air-gapped deployment
+- Designed to comply with GDPR and enterprise security policies
 
-Il sistema ascolta la conversazione e interroga la Knowledge Base aziendale.
+---
 
-Vantaggio: L'operatore riceve la soluzione tecnica (con riferimenti ai manuali PDF) prima ancora di doverla cercare manualmente.
+## Licensing Model
 
-2. Controllo Script (Compliance Check)
+The platform is provided as a **commercial on-premise SaaS**:
 
-Un modulo dedicato analizza il flusso della conversazione per verificare che l'operatore segua lo script obbligatorio.
+- Monthly subscription
+- Pricing based on:
+  - Number of active operators
+  - Enabled features (post-call / live assistance)
+- Optional enterprise SLA and customization
 
-Funzionamento: Il sistema spunta in tempo reale le fasi completate (es. "Saluto iniziale", "Lettura Privacy", "Tentativo di Upselling").
+> There is **no free or open-source license** for this software.
 
-Alert: Se l'operatore dimentica un passaggio critico (es. disclaimer legale), il sistema invia un alert visivo immediato.
+---
 
-3. Fase Post-Chiamata di Supervisione (QA Automation)
+## Intended Use
 
-Al termine della chiamata, un Agente AI "Supervisore" analizza l'intera trascrizione.
+This solution is designed for:
+- Call centers
+- Customer support departments
+- Enterprises with compliance requirements
+- Organizations that cannot move customer data to the cloud
 
-Scoring Automatico: Assegna un voto alla chiamata basandosi su parametri predefiniti (cortesia, efficacia tecnica, rispetto dello script).
+It is **not intended for personal or experimental use**.
 
-Sentiment Analysis: Mappa l'andamento emotivo del cliente durante la chiamata.
+---
 
-Supervisor Dashboard: I manager possono vedere a colpo d'occhio le performance del team senza dover riascoltare ore di registrazioni audio.
+## Availability
 
-4. Automazione CRM
+The software is available through:
+- Direct licensing agreements
+- Pilot projects
+- Enterprise deployments
 
-Eliminazione del After Call Work (ACW) manuale. Il sistema riassume la chiamata, classifica il ticket e popola i campi del CRM automaticamente.
+For demos, technical details or commercial inquiries:
+
+📧 **Contact:** [your.email@domain.com]
+
+---
+
+## Disclaimer
+
+This repository does not contain executable code.  
+Any attempt to reverse engineer, replicate or misuse the described system without authorization is prohibited.
+
+© All rights reserved.
