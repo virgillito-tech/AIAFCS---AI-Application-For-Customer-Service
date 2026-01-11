@@ -3,7 +3,7 @@
 ![Status](https://img.shields.io/badge/Status-Proprietary%20%2F%20Commercial-blue)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
 ![AI](https://img.shields.io/badge/GenAI-LLM%20%26%20RAG-orange)
-![Framework](https://img.shields.io/badge/Framework-LangChain-green)
+![Module](https://img.shields.io/badge/Module-Supervisor%20Analytics-red)
 
 > **Nota:** Questo repository funge da **vetrina tecnica** per il progetto *AIAFCS*. Poiché il software è attualmente in fase di commercializzazione/licensing, il codice sorgente completo è privato. Questo documento illustra l'architettura, le sfide tecniche risolte e le funzionalità del sistema.
 
@@ -11,26 +11,82 @@
 
 ## 🚀 Panoramica del Progetto
 
-**AIAFCS** è una piattaforma avanzata di assistenza intelligente progettata per rivoluzionare i centri di assistenza clienti. Utilizzando tecnologie di **Generative AI** e **Speech-to-Text in tempo reale**, il sistema "ascolta" le conversazioni tra operatore e cliente, trascrive il dialogo e fornisce suggerimenti tecnici istantanei recuperati dalla documentazione aziendale.
+**AIAFCS** è una piattaforma *full-stack* di assistenza intelligente progettata per ottimizzare l'intero ciclo di vita dell'interazione Customer Service. Il sistema non si limita a supportare l'operatore, ma garantisce la qualità del servizio attraverso il monitoraggio della compliance e offre strumenti di analisi avanzata per i supervisori.
 
-L'obiettivo è ridurre drasticamente il tempo medio di gestione delle chiamate (AHT) e minimizzare l'errore umano, automatizzando al contempo il data-entry nel CRM.
+Il sistema opera su tre livelli temporali:
+1.  **Real-Time Assistance:** Suggerimenti tecnici e risposte basate su manuali.
+2.  **Real-Time Script Compliance:** Verifica istantanea del rispetto delle procedure di conversazione.
+3.  **Post-Call Supervision:** Analisi automatica, valutazione e reportistica per i manager.
 
 ### 🎥 Demo / Screenshot
-*(Inserisci qui una GIF animata o uno screenshot della dashboard principale mentre trascrive e suggerisce)*
-![Dashboard AIAFCS](https://via.placeholder.com/800x400?text=Inserire+Screenshot+o+GIF+della+Dashboard+Qui)
+
 
 ---
 
 ## 🏗️ Architettura del Sistema
 
-Il sistema è stato progettato seguendo un'architettura a microservizi modulare per garantire scalabilità e bassa latenza.
+L'architettura gestisce flussi di dati paralleli per l'assistenza all'operatore e il controllo qualità.
 
 ```mermaid
 graph TD
-    A[Audio Input (VoIP/Mic)] -->|Stream WebSocket| B(Speech-to-Text Engine)
-    B -->|Text Stream| C{Orchestrator}
-    C -->|Query| D[RAG Engine / Vector DB]
-    D <-->|Retrieve Context| E[(Manuals & Knowledge Base)]
-    D -->|Context + Query| F[LLM (Llama 3 / GPT-4)]
-    F -->|Answer Generation| G[Operator Dashboard]
-    C -->|Auto-fill| H[CRM System]
+    subgraph "Live Call Phase"
+    A[Audio Input (VoIP)] -->|Stream WebSocket| B(Speech-to-Text Engine)
+    B -->|Text Stream| C{Core Orchestrator}
+    C -->|Semantic Search| D[RAG Engine / Vector DB]
+    D -->|Context| E[LLM Agent - Helper]
+    C -->|Compliance Check| F[Script Validator Engine]
+    E --> G[Operator Dashboard (Suggestions)]
+    F --> G[Operator Dashboard (Alerts/Script)]
+    end
+
+    subgraph "Post Call Phase"
+    H[End Call] --> I[Data Aggregator]
+    I --> L[LLM Agent - Supervisor]
+    L --> M[Supervisor Dashboard]
+    L --> N[CRM Auto-Fill]
+    end
+
+
+Stack Tecnologico
+
+Core: Python, AsyncIO
+
+AI Framework: LangChain, LlamaIndex
+
+LLM & Embeddings: OpenAI GPT-4o / Meta Llama 3 (Local Deployment)
+
+Vector Database: ChromaDB / Pinecone
+
+Frontend: [Inserire framework, es. Streamlit / React / Vue]
+
+Backend: FastAPI / WebSockets
+
+
+⚡ Funzionalità Chiave
+1. Trascrizione & RAG in Tempo Reale
+
+Il sistema ascolta la conversazione e interroga la Knowledge Base aziendale.
+
+Vantaggio: L'operatore riceve la soluzione tecnica (con riferimenti ai manuali PDF) prima ancora di doverla cercare manualmente.
+
+2. Controllo Script (Compliance Check)
+
+Un modulo dedicato analizza il flusso della conversazione per verificare che l'operatore segua lo script obbligatorio.
+
+Funzionamento: Il sistema spunta in tempo reale le fasi completate (es. "Saluto iniziale", "Lettura Privacy", "Tentativo di Upselling").
+
+Alert: Se l'operatore dimentica un passaggio critico (es. disclaimer legale), il sistema invia un alert visivo immediato.
+
+3. Fase Post-Chiamata di Supervisione (QA Automation)
+
+Al termine della chiamata, un Agente AI "Supervisore" analizza l'intera trascrizione.
+
+Scoring Automatico: Assegna un voto alla chiamata basandosi su parametri predefiniti (cortesia, efficacia tecnica, rispetto dello script).
+
+Sentiment Analysis: Mappa l'andamento emotivo del cliente durante la chiamata.
+
+Supervisor Dashboard: I manager possono vedere a colpo d'occhio le performance del team senza dover riascoltare ore di registrazioni audio.
+
+4. Automazione CRM
+
+Eliminazione del After Call Work (ACW) manuale. Il sistema riassume la chiamata, classifica il ticket e popola i campi del CRM automaticamente.
