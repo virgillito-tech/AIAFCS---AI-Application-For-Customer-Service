@@ -5,22 +5,34 @@
 
 ---
 
-## Overview
+## 🔍 Overview (EN)
 
-This project is an **AI-powered platform for call centers**, designed to analyze, monitor and assist customer service calls while keeping **all sensitive data inside the company infrastructure**.
+AI Call Intelligence Platform is an **enterprise AI solution for call centers** designed to analyze customer calls, support operators in real time and ensure compliance with company procedures — **without moving sensitive data outside the customer’s infrastructure**.
 
-The solution combines **speech-to-text, speaker diarization, large language models and semantic document search** to deliver both **post-call analytics** and **real-time operator assistance**.
+The platform integrates **speech recognition, speaker diarization, large language models and Retrieval-Augmented Generation (RAG)** to deliver both **post-call analytics** and **live operator guidance**.
 
 > ⚠️ **Source code is not publicly available**  
-> This repository intentionally contains **documentation only**.  
-> The software is distributed commercially under license.
+> This repository intentionally contains documentation only.  
+> The software is distributed under a commercial license.
 
 ---
 
-## Key Features
+## 🔍 Panoramica (IT)
 
-### Post-call Analysis
-- Automatic call transcription
+AI Call Intelligence Platform è una **piattaforma di Intelligenza Artificiale per call center**, progettata per analizzare le chiamate, supportare gli operatori in tempo reale e garantire la compliance operativa, **mantenendo tutti i dati all’interno dell’infrastruttura aziendale**.
+
+La soluzione integra **trascrizione vocale, diarizzazione degli interlocutori, Large Language Models e Retrieval-Augmented Generation (RAG)** per fornire sia **analisi post-chiamata** sia **assistenza live all’operatore**.
+
+> ⚠️ **Il codice sorgente non è pubblico**  
+> Questo repository contiene esclusivamente documentazione descrittiva.  
+> Il software è distribuito commercialmente su licenza.
+
+---
+
+## 🚀 Key Features / Funzionalità principali
+
+### Post-Call Analysis / Analisi post-chiamata
+- Automatic speech-to-text transcription
 - Speaker diarization (operator / customer)
 - Call summary generation
 - Keyword extraction
@@ -30,87 +42,123 @@ The solution combines **speech-to-text, speaker diarization, large language mode
   - Urgency detection for negative calls
 - Compliance monitoring:
   - Detection of mandatory scripts not read
-  - Precise indication of missing sections
+  - Explicit identification of missing sections
 
 ---
 
-### Real-time Operator Assistance
-- Live audio analysis during the call
+### Real-Time Operator Assistance / Supporto live all’operatore
+- Live audio stream analysis during the call
 - Context-aware suggestions for issue resolution
-- Answers retrieved exclusively from **company documentation**
-- Every suggestion includes:
+- Answers generated exclusively from **company documentation**
+- Each suggestion includes:
   - Document name
-  - Page
+  - Page number
   - Paragraph reference
 
-This allows operators to respond faster, more accurately and in full compliance with internal procedures.
+This enables faster resolution times, improved accuracy and full procedural compliance.
 
 ---
 
-## Architecture
+## 🧠 AI & Technologies Used
 
-- **Fully on-premise deployment**
+### Speech Recognition
+- **OpenAI Whisper**
+  - High-accuracy automatic speech recognition (ASR)
+  - Multilingual support
+  - Optimized for noisy call-center audio
+
+### Speaker Diarization
+- **Pyannote.audio**
+  - Neural speaker segmentation
+  - Separation of operator and customer voices
+  - Robust performance on real-world telephone conversations
+
+### Language Understanding & Reasoning
+- **Large Language Models (LLMs – LLaMA family)**
+  - Conversation summarization
+  - Keyword extraction
+  - Sentiment classification
+  - Compliance verification
+  - Semantic understanding of customer issues
+
+### Knowledge Retrieval (RAG)
+- **Retrieval-Augmented Generation (RAG)**
+- **Vector database (e.g. ChromaDB)**
+  - Company PDFs and internal documentation are embedded
+  - Semantic search retrieves only relevant passages
+  - LLM responses are grounded in verified internal sources
+
+This ensures **accurate, explainable and auditable answers**.
+
+---
+
+## 🏗 Architecture
+
+- Fully **on-premise deployment**
 - Uses **customer-owned hardware and GPUs**
-- Containerized architecture (Docker / Kubernetes)
-- Local REST / WebSocket APIs
-- No audio, transcripts or personal data are sent outside the company network
+- Containerized services (Docker / Kubernetes)
+- Local REST and WebSocket APIs
+- Designed for integration with:
+  - CRM systems
+  - CTI / VoIP platforms
+  - Custom call-center software
 
-The platform is compatible with existing **CRM and CTI systems** through API integration.
+No audio streams, transcripts or sensitive data are sent outside the company network.
 
 ---
 
-## Privacy & Security
+## 🔐 Privacy & Security
 
-- No external cloud dependency for data processing
+- No external cloud processing of customer data
 - End-to-end encrypted communication
-- Metadata-only usage tracking
-- Optional air-gapped deployment
-- Designed to comply with GDPR and enterprise security policies
+- Metadata-only usage monitoring
+- Optional air-gapped installation
+- Designed to support GDPR and enterprise security requirements
 
 ---
 
-## Licensing Model
+## 📄 Licensing & Distribution
 
-The platform is provided as a **commercial on-premise SaaS**:
+The platform is provided as a **commercial on-premise SaaS solution**.
 
-- Monthly subscription
+- Monthly subscription model
 - Pricing based on:
   - Number of active operators
-  - Enabled features (post-call / live assistance)
-- Optional enterprise SLA and customization
+  - Enabled modules (post-call analysis, live assistance)
+- Optional enterprise SLA and custom integrations
 
-> There is **no free or open-source license** for this software.
+> There is **no open-source or free license** for this software.
 
 ---
 
-## Intended Use
+## 🎯 Intended Use / Destinazione d’uso
 
-This solution is designed for:
+Designed for:
 - Call centers
 - Customer support departments
-- Enterprises with compliance requirements
-- Organizations that cannot move customer data to the cloud
+- Enterprises with compliance constraints
+- Organizations that cannot adopt cloud-only AI solutions
 
-It is **not intended for personal or experimental use**.
+**Not intended for personal, academic or experimental use.**
 
 ---
 
-## Availability
+## 📬 Availability & Contact
 
 The software is available through:
 - Direct licensing agreements
 - Pilot projects
 - Enterprise deployments
 
-For demos, technical details or commercial inquiries:
+For technical details, demos or commercial inquiries:
 
 📧 **Contact:** [your.email@domain.com]
 
 ---
 
-## Disclaimer
+## ⚖ Disclaimer
 
-This repository does not contain executable code.  
-Any attempt to reverse engineer, replicate or misuse the described system without authorization is prohibited.
+This repository does not include executable code or models.  
+Any attempt to replicate, reverse engineer or use the described system without authorization is strictly prohibited.
 
 © All rights reserved.
