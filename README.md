@@ -16,7 +16,8 @@
 L'obiettivo è triplice: **ridurre l'AHT** (Average Handle Time), **garantire la compliance** legale/procedurale e **fornire analytics avanzati** ai supervisori.
 
 ### 🎥 Anteprima
-https://github.com/virgillito-tech/AIAFCS---AI-Application-For-Customer-Service/blob/main/Screenshot%202025-12-17%20alle%2001.10.00.png?raw=true
+![Dashboard AIAFCS]
+(https://github.com/virgillito-tech/AIAFCS---AI-Application-For-Customer-Service/blob/main/Screenshot%202025-12-17%20alle%2001.10.00.png?raw=true)
 https://github.com/virgillito-tech/AIAFCS---AI-Application-For-Customer-Service/blob/main/Screenshot%202025-12-19%20alle%2008.13.10.png?raw=true
 ---
 
