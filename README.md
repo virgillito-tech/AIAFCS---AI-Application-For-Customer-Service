@@ -16,8 +16,7 @@
 L'obiettivo è triplice: **ridurre l'AHT** (Average Handle Time), **garantire la compliance** legale/procedurale e **fornire analytics avanzati** ai supervisori.
 
 ### 🎥 Anteprima
-*(Spazio riservato per GIF animata o Screenshot della Dashboard)*
-![Dashboard Placeholder](https://via.placeholder.com/800x400?text=Inserire+qui+Screenshot+della+Dashboard+Operatore)
+
 
 ---
 
